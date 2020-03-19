@@ -6,13 +6,11 @@ import ssl
 
 # app config
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+app.config.from_object("configuration.DevelopmentConfig")
 
-# database config
-app.config["MONGODB_SETTINGS"] = {
-	"host": "mongodb+srv://admin:adminPassword001@curriculum-edcoy.mongodb.net/test?ssl=true&ssl_cert_reqs=CERT_NONE&retryWrites=true&w=majority"
-}
+# initiate MongoDB
 db = MongoEngine(app)
+
 
 # authentication config
 login_manager = LoginManager()

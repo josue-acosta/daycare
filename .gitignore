@@ -1,1 +1,6 @@
+# Folders
 env/
+__pychache__/
+
+# Documents
+configuration.py
