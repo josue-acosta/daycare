@@ -1,8 +1,7 @@
-from flask import request, render_template, redirect, url_for, session, Blueprint, g
+from flask import request, render_template, redirect, url_for, Blueprint, g
 from flask_login import current_user, login_user, logout_user, login_required
-from my_app import app, db, login_manager
+from my_app import login_manager
 from my_app.auth.models import User, RegistrationForm, LoginForm
-from werkzeug.security import generate_password_hash, check_password_hash
 
 auth_blueprint = Blueprint("auth", __name__)
 
