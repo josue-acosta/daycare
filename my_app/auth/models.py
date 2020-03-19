@@ -8,11 +8,12 @@ from wtforms.validators import InputRequired, EqualTo, DataRequired
 # mongo document schema for Child
 class User(db.Document):
 	username = db.StringField(maxlength=255, required=True)
-	password = db.StringField(maxlength=255, required=True)
+	password_hash = db.StringField(maxlength=255, required=True)
 
-	# def __init__(self, username, password):
-	# 	self.username = username
-	# 	self.password_hash = generate_password_hash(password)
+	def __init__(self, password=None, **data):
+		if password is not None:
+			data["password_hash"] = generate_password_hash(password)
+		super(User, self).__init__(**data)
 
 	def check_password(self, password):
 		return check_password_hash(self.password_hash, password)

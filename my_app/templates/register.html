@@ -16,7 +16,8 @@
 	<div>{{ form.confirm() }}</div>
 
 	{% if form.errors %}
-	<ul class=errors>
+	<p>There's an error with your:</p>
+	<ul>
 		{% for error in form.errors %}
 		<li>{{ error }}</li>
 		{% endfor %}
