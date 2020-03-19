@@ -8,6 +8,7 @@ import ssl
 app = Flask(__name__)
 app.config.from_object("configuration.DevelopmentConfig")
 
+
 # initiate MongoDB
 db = MongoEngine(app)
 
