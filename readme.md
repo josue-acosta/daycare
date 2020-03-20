@@ -25,7 +25,7 @@ This is a CRUD web app built on Flask and the databased is managed by MongoDB.
 	first_name: "Tuesday",
 	last_name: "Grundy",
 	birthday: 2020-01-01T00:00:00.000+00:00,
-	parents = [
+	parent = [
 		{ "_id": "parent_00001" }
 		{ "_id": "parent_00002" }
 	]

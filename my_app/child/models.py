@@ -11,7 +11,7 @@ class Child(db.Document):
 	last_name = db.StringField(maxlength=255, required=True)
 	birthday = db.DateTimeField(required=True)
 	age_group = db.DecimalField()
-	parent = db.EmbeddedDocumentField(Parent)
+	parent = db.EmbeddedDocumentListField(Parent)
 
 	def __repr__(self):
 		return "<Children %r>" % self.id

@@ -37,7 +37,7 @@ def add():
 			first_name = form.first_name.data,
 			last_name = form.last_name.data,
 			birthday = form.birthday.data,
-			parent = parent
+			parent = [parent]
 		)
 
 		child.save()
