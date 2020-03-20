@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="row">
+	<div class="col s12">
+		<h1>Add a parent</h1>
+
+		<form action="{{ url_for('parent.add') }}" method="POST" role="form">
+
+			<div>{{ form.first_name.label }}</div>
+			<div>{{ form.first_name() }}</div>
+
+			<div>{{ form.last_name.label }}</div>
+			<div>{{ form.last_name() }}</div>
+
+			<button class="btn" type="submit">Submit</button>
+			<a class="btn-flat" href="{{ url_for('child.dashboard') }}">Cancel</a>
+		</form>
+	</div>
+</div>
+{% endblock %}

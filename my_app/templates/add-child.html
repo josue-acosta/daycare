@@ -7,6 +7,7 @@
 
 		<form action="{{ url_for('child.add') }}" method="POST" role="form">
 
+			<h4>Child information</h4>
 			<div>{{ form.first_name.label }}</div>
 			<div>{{ form.first_name() }}</div>
 
@@ -15,6 +16,13 @@
 
 			<div>{{ form.birthday.label }}</div>
 			<div>{{ form.birthday() }}</div>
+
+			<h4>Parent information</h4>
+			<div>{{ form.parent.first_name.label }}</div>
+			<div>{{ form.parent.first_name() }}</div>
+
+			<div>{{ form.parent.last_name.label }}</div>
+			<div>{{ form.parent.last_name() }}</div>
 
 			<button class="btn" type="submit">Submit</button>
 			<a class="btn-flat" href="{{ url_for('child.dashboard') }}">Cancel</a>

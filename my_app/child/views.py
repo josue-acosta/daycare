@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, url_for, Blueprint
 from flask_login import login_required
 from my_app.child.models import Child, ChildForm
+from my_app.parent.models import Parent, ParentForm
 
 child_blueprint = Blueprint("child", __name__)
 
@@ -27,10 +28,16 @@ def add():
 	form = ChildForm(meta={'csrf': False})
 
 	if request.method == "POST":
+		parent = Parent (
+			first_name = form.parent.first_name.data,
+			last_name = form.parent.last_name.data
+		)
+
 		child = Child (
 			first_name = form.first_name.data,
 			last_name = form.last_name.data,
-			birthday = form.birthday.data
+			birthday = form.birthday.data,
+			parent = parent
 		)
 
 		child.save()

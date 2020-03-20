@@ -15,3 +15,36 @@ This is a CRUD web app built on Flask and the databased is managed by MongoDB.
 - https://docs.python.org/3.4/library/datetime.html
 - https://flask-user.readthedocs.io/en/latest/mongodb_app.html
 - https://stackoverflow.com/questions/16981268/mongoengine-typeerror-init-got-an-unexpected-keyword-argument
+- https://www.quora.com/How-do-I-create-and-update-embedded-documents-with-MongoEngine
+- https://dev.to/sampart/combining-multiple-forms-in-flask-wtforms-but-validating-independently-cbm
+- https://wtforms.readthedocs.io/en/stable/fields.html
+
+
+{
+	"_id": "child_00001",
+	first_name: "Tuesday",
+	last_name: "Grundy",
+	birthday: 2020-01-01T00:00:00.000+00:00,
+	parents = [
+		{ "_id": "parent_00001" }
+		{ "_id": "parent_00002" }
+	]
+}
+
+{
+	"_id": "parent_00001",
+	first_name: "Solomon",
+	last_name: "Grundy",
+	children: [
+		{ "_id": "child_00001" }
+	]
+}
+
+{
+	"_id": "parent_00002",
+	first_name: "Caroline",
+	last_name: "Grundy",
+	children: [
+		{ "_id": "child_00001" }
+	]
+}
