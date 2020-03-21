@@ -9,9 +9,9 @@ from my_app.parent.models import Parent, ParentForm
 class Child(db.Document):
 	first_name = db.StringField(maxlength=255, required=True)
 	last_name = db.StringField(maxlength=255, required=True)
-	birthday = db.DateTimeField(required=True)
+	birthday = db.DateTimeField()
 	age_group = db.DecimalField()
-	parent = db.EmbeddedDocumentListField(Parent)
+	parent = db.ReferenceField(Parent)
 
 	def __repr__(self):
 		return "<Children %r>" % self.id
@@ -20,5 +20,5 @@ class Child(db.Document):
 class ChildForm(FlaskForm):
 	first_name = StringField("First name", validators=[InputRequired()])
 	last_name = StringField("Last name", validators=[InputRequired()])
-	birthday = DateField("Birthday", validators=[InputRequired()], format='%Y-%m-%d')
+	birthday = DateField("Birthday", format='%Y-%m-%d')
 	parent = FormField(ParentForm)

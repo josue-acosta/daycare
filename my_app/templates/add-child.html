@@ -24,8 +24,18 @@
 			<div>{{ form.parent.last_name.label }}</div>
 			<div>{{ form.parent.last_name() }}</div>
 
-			<button class="btn" type="submit">Submit</button>
-			<a class="btn-flat" href="{{ url_for('child.dashboard') }}">Cancel</a>
+			<div>{{ form.parent.phone.label }}</div>
+			<div>{{ form.parent.phone() }}</div>
+
+			<div>{{ form.parent.address.label }}</div>
+			<div>{{ form.parent.address() }}</div>
+
+			<div class="row util-margin-top-30">
+				<div class="col s12">
+					<button class="btn" type="submit">Submit</button>
+					<a class="btn-flat" href="{{ url_for('child.dashboard') }}">Cancel</a>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>

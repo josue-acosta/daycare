@@ -18,6 +18,7 @@ This is a CRUD web app built on Flask and the databased is managed by MongoDB.
 - https://www.quora.com/How-do-I-create-and-update-embedded-documents-with-MongoEngine
 - https://dev.to/sampart/combining-multiple-forms-in-flask-wtforms-but-validating-independently-cbm
 - https://wtforms.readthedocs.io/en/stable/fields.html
+- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters
 
 
 {

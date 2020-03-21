@@ -2,21 +2,32 @@
 
 {% block container %}
 
-<h1>Login</h1>
-{% if session.username %}
-<h2>You're already logged in</h2>
-<a class="btn" href="{{ url_for('auth.logout')}}">Log out</a>
-{% else %}
-<form method="POST" action="{{ url_for('auth.login') }}" role="form">
+<div class="page-login">
+	<div class="row">
+		<div class="col s6 offset-s3">
+			{% if current_user.is_authenticated %}
+			<h4>You're already logged in</h4>
+			<a class="btn util-margin-top-30" href="{{ url_for('child.dashboard') }}"><i class="material-icons left">arrow_back</i>Go to dashboard</a>
+			<a class="btn-flat util-margin-top-30" href="{{ url_for('auth.logout')}}">Log out</a>
+			{% else %}
+			<div class="card">
+				<div class="card-content">
+					<span class="card-title">Log in</span>
+					<form method="POST" action="{{ url_for('auth.login') }}" role="form">
 
-	<div>{{ form.username.label }}</div>
-	<div>{{ form.username() }}</div>
+						<div>{{ form.username.label }}</div>
+						<div>{{ form.username() }}</div>
 
-	<div>{{ form.password.label }}</div>
-	<div>{{ form.password() }}</div>
+						<div>{{ form.password.label }}</div>
+						<div>{{ form.password() }}</div>
 
-	<button type="submit" class="btn">Submit</button>
-</form>
-{% endif %}
+						<button type="submit" class="btn util-margin-top-30">Submit</button>
+					</form>
 
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
 {% endblock %}
