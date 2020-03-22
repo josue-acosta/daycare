@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, Blueprint
 from flask_login import login_required
-from my_app.child.models import Child, ChildForm
+from my_app.child.models import Child, ChildForm, group_age_group
 from my_app.parent.models import Parent, ParentForm
 
 child_blueprint = Blueprint("child", __name__)
@@ -18,8 +18,9 @@ def full_name_processor():
 @login_required
 def dashboard():
 	children = Child.objects.all()
+	age_group = group_age_group(children)
 
-	return render_template("dashboard.html", children=children)
+	return render_template("dashboard.html", children=children, age_group=age_group)
 
 
 @child_blueprint.route("/add", methods=["GET", "POST"])
@@ -42,6 +43,7 @@ def add():
 			last_name = form.last_name.data,
 			birthday = form.birthday.data
 		)
+		child.age_group = child.calculate_age_group(form.birthday.data)
 		child.parent = parent
 		child.save()
 
@@ -75,10 +77,13 @@ def edit_child(id):
 			address = form.parent.address.data,
 		)
 
-		child.update(
+		age_group = child.calculate_age_group(form.birthday.data)
+
+		child.update (
 			first_name = form.first_name.data,
 			last_name = form.last_name.data,
 			birthday = form.birthday.data,
+			age_group = age_group,
 			parent = parent
 		)
 
