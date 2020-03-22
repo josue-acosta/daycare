@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config.from_object("configuration.DevelopmentConfig")
 
 
-# initiate MongoDB
+# mongo_db config
 db = MongoEngine(app)
 
 

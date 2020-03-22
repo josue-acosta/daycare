@@ -3,29 +3,78 @@
 {% block container %}
 <div>
 	<div class="row">
-		<h1>Dashboard</h1>
-		<a class="btn" href="{{ url_for('child.add') }}"><i class="material-icons right">add</i> Add Child</a>
+		<div class="col s12">
+			<h1>Dashboard</h1>
+		</div>
 	</div>
 
-	{% if current_user.is_authenticated %}
-	<a class="btn" href="{{ url_for('auth.logout')}}">Log out</a>
-	{% endif %}
-
-	{% for child in children %}
 	<div class="row">
-		<div class="col s12">
-			<div class="card">
-				<div class="card-content">
-					<span class="card-title">{{ full_name(child) }}</span>
-					<p>Birthday: {{ child["birthday"] }}</p>
-					<p>Age group: {{ child["age_group"] }}</p>
+		<div class="col s6">
+			<a class="btn" href="{{ url_for('child.add') }}"><i class="material-icons right">add</i> Add Child</a>
+		</div>
+		<div class="col s6">
+			<a class="btn" href="{{ url_for('auth.logout')}}">Log out</a>
+		</div>
+	</div>
+
+	<div class="age-group--wrapper row">
+		<div class="age-group--container col s3">
+			<div class="card teal">
+				<div class="card-content white-text">
+					<span class="card-title center">Age Group #1</span>
+					<p class="age-group--count">{{ age_group.age_group_1_count }}</p>
 				</div>
-				<div class="card-action">
-					<a class="blue-text btn-flat" href="{{ url_for('child.view_child', id=child['id']) }}"><i class="material-icons right">arrow_forward</i>View child</a>
+			</div>
+		</div>
+
+		<div class="age-group--container col s3">
+			<div class="card teal">
+				<div class="card-content white-text">
+					<span class="card-title center">Age Group #2</span>
+					<p class="age-group--count">{{ age_group.age_group_2_count }}</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="age-group--container col s3">
+			<div class="card teal">
+				<div class="card-content white-text">
+					<span class="card-title center">Age Group #3</span>
+					<p class="age-group--count">{{ age_group.age_group_3_count }}</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="age-group--container col s3">
+			<div class="card teal">
+				<div class="card-content white-text">
+					<span class="card-title center">Age Group #4</span>
+					<p class="age-group--count">{{ age_group.age_group_4_count }}</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	{% endfor %}
+
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Age Group</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{% for child in children %}
+			<tr>
+				<td>{{ full_name(child) }}</td>
+				<td>{{ child["age_group"] }}</td>
+				<td>
+					<a class="blue-text" href="{{ url_for('child.view_child', id=child['id']) }}">View child</a>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 </div>
 {% endblock %}
