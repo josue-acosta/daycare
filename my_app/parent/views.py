@@ -1,18 +1,19 @@
 from flask import render_template, request, redirect, url_for, Blueprint
 from flask_login import login_required
-from my_app.parent.models import Parent, ParentForm
-from my_app.child.models import Child
+from my_app.parent.models import Parent, ParentForm, AddressForm
+from my_app.child.models import Child, ChildForm
 
 
 parent_blueprint = Blueprint("parent", __name__)
 
 
-# @parent_blueprint.route("/dashboard")
-# @login_required
-# def dashboard():
-# 	children = Child.objects.all()
+# context_processor to combine persona's first_name and last_name
+@parent_blueprint.context_processor
+def full_name_processor():
+	def full_name(name):
+		return "{0} {1}".format(name["first_name"], name["last_name"])
 
-# 	return render_template("dashboard.html", children=children)
+	return {"full_name": full_name}
 
 
 # @parent_blueprint.route("/add-parent", methods=["GET", "POST"])
@@ -41,23 +42,39 @@ parent_blueprint = Blueprint("parent", __name__)
 # 	return render_template("view-parent.html", child=child)
 
 
-# @parent_blueprint.route("/edit/<id>", methods=["GET", "POST"])
-# @login_required
-# def edit_child(id):
-# 	child = Child.objects.get_or_404(id=id)
-# 	form = ChildForm(meta={'csrf': False})
+@parent_blueprint.route("/edit-parent/<id>", methods=["GET", "POST"])
+@login_required
+def edit_parent(id):
+	child = Child.objects.get(id=id)
+	parent = Parent.objects.get(id=child.parent.id)
 
-# 	if request.method == "POST":
-# 		child.update(
-# 			first_name = form.first_name.data,
-# 			last_name = form.last_name.data,
-# 			birthday = form.birthday.data
-# 		)
+	form = ParentForm(meta={'csrf': False})
 
-# 		return redirect(url_for("child.view_child", id=id))
+	if request.method == "POST":
+		# parent.update(
+		# 	first_name = form.first_name.data,
+		# 	last_name = form.last_name.data,
+		# 	phone = form.phone.data,
+		# 	address = form.address.data
+		# )
 
-# 	return render_template("edit-child.html", child=child, form=form)
+		print(form.address.data)
+		
+		address = []
 
+		for address_line in form.address.data:
+			print(address_line)
+			new_address_line = AddressForm(**address_line)
+
+			# Add to parent
+			address.append(new_address_line)
+			# parent.address.append(new_address_line)
+
+		print(address)
+
+		return redirect(url_for("child.view_child", id=id))
+
+	return render_template("edit-parent.html", form=form, child=child, parent=parent)
 
 # @parent_blueprint.route("/delete-parent/<id>")
 # @login_required

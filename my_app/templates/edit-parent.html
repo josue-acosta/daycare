@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="row">
+	<div class="col s12">
+		<form action="{{ url_for('parent.edit_parent', id=child['id']) }}" method="POST" role="form">
+
+
+			<h4 class="util-margin-top-60">Edit <span class="teal-text">{{ full_name(child) }}</span> parent's information</h4>
+			<div class="util-margin-top-30">
+				<div>{{ form.first_name.label }}</div>
+				<div>{{ form.first_name(value=parent.first_name) }}</div>
+
+				<div>{{ form.last_name.label }}</div>
+				<div>{{ form.last_name(value=parent.last_name) }}</div>
+
+				<div>{{ form.phone.label }}</div>
+				<div>{{ form.phone(value=parent.phone) }}</div>
+
+				<a id="js-add-address-line" href="#">Add Address Line</a>
+
+				<div id="subforms-container">
+					{% for subform in form.address %}
+					<div id="address-{{ loop.index0 }}-form" data-index="{{ loop.index0 }}">
+						{{ subform.address_line.label }}
+						{{ subform.address_line(value=parent.address) }}
+						<a class="js-remove-address-line" href="#">Remove</a>
+					</div>
+					{% endfor %}
+				</div>
+
+			</div>
+
+			<div class="row util-margin-top-30">
+				<div class="col s12">
+					<button class="btn" type="submit">Submit</button>
+					<a class="btn-flat" href="{{ url_for('child.view_child', id=child['id']) }}">Back to child</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

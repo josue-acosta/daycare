@@ -9,6 +9,24 @@ This is a CRUD web app built on Flask and the databased is managed by MongoDB.
 
 	`python run.py`
 
+## to-do
+__phase ii__
+
+1. dynamically add form field
+	- address; limit 4 fields
+	- phone; limit 2 fields
+
+2. calculate age daily
+
+3. edit individual parent page
+
+__phase iii__
+
+1. change address from single line to mulitiple parts
+	- city, state, zip
+
+2. import state
+
 # general step
 ## step 1: create basic flask app
 	- virtual env
@@ -79,3 +97,5 @@ This is a CRUD web app built on Flask and the databased is managed by MongoDB.
 - https://stackoverflow.com/questions/127803/how-do-i-parse-an-iso-8601-formatted-date
 - https://realpython.com/python-f-strings/
 - https://opensource.com/article/19/5/python-3-default-mac
+- https://www.rmedgar.com/blog/dynamic-fields-flask-wtf
+- http://www.anton.web.id/2014/03/flask-wtform-how-to-create-dynamic-fields.html

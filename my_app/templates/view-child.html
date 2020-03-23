@@ -33,7 +33,7 @@
 					<thead>
 						<tr>
 							<th class="util-margin-top-60">{{ full_name(parent) }}</th>
-							<th></th>
+							<td><a class="blue-text btn-flat" href="{{ url_for('parent.edit_parent', id=child['id']) }}"><i class="material-icons left">edit</i>Edit</a></td>
 						</tr>
 					</thead>
 
