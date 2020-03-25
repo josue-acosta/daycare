@@ -10,9 +10,9 @@ from datetime import date, datetime
 class Child(db.Document):
 	first_name = db.StringField(maxlength=255, required=True)
 	last_name = db.StringField(maxlength=255, required=True)
-	birthday = db.DateTimeField()
+	birthday = db.DateTimeField(required=True)
 	age_group = db.IntField()
-	parent = db.ReferenceField(Parent)
+	parent = db.EmbeddedDocumentListField(Parent)
 
 	def calculate_age_group(self, birthday):
 		today = date.today()
@@ -39,7 +39,7 @@ class Child(db.Document):
 class ChildForm(FlaskForm):
 	first_name = StringField("First name", validators=[InputRequired()])
 	last_name = StringField("Last name", validators=[InputRequired()])
-	birthday = DateField("Birthday", format='%Y-%m-%d')
+	birthday = DateField("Birthday", validators=[InputRequired()], format='%Y-%m-%d')
 	parent = FormField(ParentForm)
 
 

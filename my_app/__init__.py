@@ -23,8 +23,5 @@ login_manager.login_view = "auth.login"
 from my_app.child.views import child_blueprint
 app.register_blueprint(child_blueprint)
 
-from my_app.parent.views import parent_blueprint
-app.register_blueprint(parent_blueprint)
-
 from my_app.auth.views import auth_blueprint
 app.register_blueprint(auth_blueprint)

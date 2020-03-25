@@ -19,7 +19,7 @@
 					<tbody>
 						<tr>
 							<td>Birthday</td>
-							<td>{{ child.birthday }}</td>
+							<td>{{ child.birthday.strftime('%Y-%m-%d') }}</td>
 						</tr>
 						<tr>
 							<td>Age group</td>
@@ -29,25 +29,27 @@
 				</table>
 
 				<span class="card-title util-margin-top-60 teal white-text util-padding-left-15 util-padding-vert-5">Gaurdian's Information</span>
+				{% for parent in child.parent %}
 				<table>
 					<thead>
 						<tr>
 							<th class="util-margin-top-60">{{ full_name(parent) }}</th>
-							<td><a class="blue-text btn-flat" href="{{ url_for('parent.edit_parent', id=child['id']) }}"><i class="material-icons left">edit</i>Edit</a></td>
+							<th>&nbsp;</th>
 						</tr>
 					</thead>
 
 					<tbody>
 						<tr>
 							<td>Phone</td>
-							<td>{{ parent.phone }}</td>
+							<td>{{ parent.first_name }}</td>
 						</tr>
 						<tr>
 							<td>Address</td>
-							<td>{{ parent.address }}</td>
+							<td>{{ parent.first_name }}</td>
 						</tr>
 					</tbody>
 				</table>
+				{% endfor %}
 			</div>
 
 			<div class="card-action">

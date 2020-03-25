@@ -31,20 +31,22 @@ def add():
 	if request.method == "POST":
 		parent = Parent (
 			first_name = form.parent.first_name.data,
-			last_name = form.parent.last_name.data,
-			phone = form.parent.phone.data,
-			address = form.parent.address.data,
+			last_name = form.parent.last_name.data
 		)
-		parent.save()
 
+		new_parent = Parent (
+			first_name = "Coridon",
+			last_name = "Grundy"
+		)
 
 		child = Child (
 			first_name = form.first_name.data,
 			last_name = form.last_name.data,
-			birthday = form.birthday.data
+			birthday = form.birthday.data,
+			parent = [parent, new_parent]
 		)
+
 		child.age_group = child.calculate_age_group(form.birthday.data)
-		child.parent = parent
 		child.save()
 
 		return redirect(url_for("child.dashboard"))
@@ -56,9 +58,8 @@ def add():
 @login_required
 def view_child(id):
 	child = Child.objects.get(id=id)
-	parent = Parent.objects.get(id=child.parent.id)
 
-	return render_template("view-child.html", child=child, parent=parent)
+	return render_template("view-child.html", child=child)
 
 
 @child_blueprint.route("/edit/<id>", methods=["GET", "POST"])

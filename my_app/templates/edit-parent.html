@@ -7,6 +7,7 @@
 
 
 			<h4 class="util-margin-top-60">Edit <span class="teal-text">{{ full_name(child) }}</span> parent's information</h4>
+			<h4 class="util-margin-top-60">{{ parent.id }}</h4>
 			<div class="util-margin-top-30">
 				<div>{{ form.first_name.label }}</div>
 				<div>{{ form.first_name(value=parent.first_name) }}</div>
@@ -28,7 +29,6 @@
 					</div>
 					{% endfor %}
 				</div>
-
 			</div>
 
 			<div class="row util-margin-top-30">
