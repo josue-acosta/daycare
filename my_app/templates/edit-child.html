@@ -15,22 +15,18 @@
 			<div>{{ form.last_name(value=child.last_name) }}</div>
 
 			<div>{{ form.birthday.label }}</div>
-			<div>{{ form.birthday(value=child.birthday) }}</div>
+			<div>{{ form.birthday(value=child.birthday.strftime('%Y-%m-%d')) }}</div>
 
 			<h4 class="util-margin-top-60">Parent information</h4>
+			{% for parent in child.parent %}
 			<div class="util-margin-top-30">
 				<div>{{ form.parent.first_name.label }}</div>
 				<div>{{ form.parent.first_name(value=parent.first_name) }}</div>
 
 				<div>{{ form.parent.last_name.label }}</div>
 				<div>{{ form.parent.last_name(value=parent.last_name) }}</div>
-
-				<div>{{ form.parent.phone.label }}</div>
-				<div>{{ form.parent.phone(value=parent.phone) }}</div>
-
-				<div>{{ form.parent.address.label }}</div>
-				<div>{{ form.parent.address(value=parent.address) }}</div>
 			</div>
+			{% endfor %}
 
 			<div class="row util-margin-top-30">
 				<div class="col s12">

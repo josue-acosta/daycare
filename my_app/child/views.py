@@ -66,7 +66,6 @@ def view_child(id):
 @login_required
 def edit_child(id):
 	child = Child.objects.get(id=id)
-	parent = Parent.objects.get(id=child.parent.id)
 
 	form = ChildForm(meta={'csrf': False})
 
@@ -90,7 +89,7 @@ def edit_child(id):
 
 		return redirect(url_for("child.view_child", id=id))
 
-	return render_template("edit-child.html", child=child, parent=parent, form=form)
+	return render_template("edit-child.html", child=child, form=form)
 
 
 @child_blueprint.route("/delete/<id>")
